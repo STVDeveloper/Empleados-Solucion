@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>To-do CRUD</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <h1>Administraciòn de Empleados</h1>
+
+
+    <div id="agregarForm">
+        <h3>Nuevo Empleado</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <br />
+            Nombre: <input type="text" id="add-nombre" placeholder="Nombre"><br />
+            Ap. Paterno: <input type="text" id="add-ApPaterno" placeholder="Ap Paterno"><br />
+            Ap. Materno<input type="text" id="add-ApMaterno" placeholder="Ap Materno"><br />
+            Edad: <input type="number" id="add-Edad" placeholder="Edad">
+            Direcciòn: <input type="text" id="add-Direccion" placeholder="Direcciòn"><br />
+            Genero: <input type="text" id="add-Genero" maxlength="1" placeholder="Genero (Masculino,Femenino,Otro)"><br />
+            RFC: <input type="text" id="add-RFC" placeholder="RFC"><br />
+            Estado Civil: <input type="text" id="add-EstadoCivil" maxlength="1" placeholder="Esatado Civil (Soltero,Casado,Otro)"><br />
+            Fecha de Nacimiento: <input type="date" id="add-FecNacimiento" placeholder="Fecha de Nacimiento"><br />
+            Email: <input type="email" id="add-Email" placeholder="Email"><br />
+            Telefono: <input type="text" id="add-Telefono" placeholder="Telèfono"><br />
+            Puesto: <input type="text" id="add-Puesto" placeholder="Puesto"><br />
+            Fecha de Alta<input type="date" id="add-FecAlta" placeholder="Fecha de FecAlta"><br />
+            <input type="submit" value="Registrar">&nbsp;&nbsp;&nbsp;
+            <input type="button" value="Cancelar" onclick="closeAddForm()">
+            <br /><br /><br /><br />
+            
+
+        </form>
+    </div>
+
+    <div id="editForm">
+        <h3>Editar Empleado</h3>
+        <form action="javascript:void(0);" onsubmit="updateItem()">
+            <input type="hidden" id="edit-id">
+            Nombre: <label id="edit-nombre"></label> <br />
+            Ap. Paterno: <label id="edit-ApPaterno"></label>  <br />
+            Ap. Materno: <label id="edit-ApMaterno"></label><br />
+            Edad: <label id="edit-Edad"></label><br />
+            Genero: <label id="edit-Genero"></label>   <br />
+            RFC: <label id="edit-RFC"></label>    <br />
+            Fecha de Nacimiento: <label id="edit-FecNacimiento"></label> <br />
+            Fecha de Alta<label id="edit-FecAlta"></label>   <br />
+
+
+            Email: <input type="email" id="edit-Email" placeholder="Email"><br />
+            Telefono: <input type="text" id="edit-Telefono" placeholder="Telèfono"><br />
+            Puesto: <input type="text" id="edit-Puesto" placeholder="Puesto"><br />
+            Fecha de Baja: <input type="date" id="edit-FecBaja" placeholder="Fecha de Nacimiento"><br />
+            Estado Civil: <input type="text" id="edit-EstadoCivil" maxlength="1" placeholder="Esatado Civil (Soltero,Casado,Otro)"><br />
+            Direcciòn: <input type="text" id="edit-Direccion" placeholder="Direcciòn"><br /><br />
+
+            <input type="submit" value="Actualizar">&nbsp;&nbsp;&nbsp;
+            <input type="button" value="Cancelar" onclick="closeEditForm()">
+            <br /><br /><br /><br />
+        </form>
+    </div>
+
+    <div id="dataSection">
+        <input type="button" value="Bùsqueda">&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Crear" onclick="displayAdded()">&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Actualizar" onclick="location.reload()">&nbsp;&nbsp;&nbsp;
+
+
+        <p id="counter"></p>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Puesto</th>
+                <th>RFC</th>
+                <th>Fecha Alta</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tbody id="todos"></tbody>
+        </table>
+
+        <script src="js/site.js" asp-append-version="true"></script>
+        <script type="text/javascript">
+            listaEmpleados();
+        </script>
+    </div>
+</body>
+</html>
