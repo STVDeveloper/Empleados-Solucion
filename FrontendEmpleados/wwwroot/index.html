@@ -16,7 +16,7 @@
             Nombre: <input type="text" id="add-nombre" placeholder="Nombre"><br />
             Ap. Paterno: <input type="text" id="add-ApPaterno" placeholder="Ap Paterno"><br />
             Ap. Materno<input type="text" id="add-ApMaterno" placeholder="Ap Materno"><br />
-            Edad: <input type="number" id="add-Edad" placeholder="Edad">
+            Edad: <input type="number" id="add-Edad" placeholder="Edad"><br />
             Direcciòn: <input type="text" id="add-Direccion" placeholder="Direcciòn"><br />
             Genero: <input type="text" id="add-Genero" maxlength="1" placeholder="Genero (Masculino,Femenino,Otro)"><br />
             RFC: <input type="text" id="add-RFC" placeholder="RFC"><br />
@@ -29,7 +29,7 @@
             <input type="submit" value="Registrar">&nbsp;&nbsp;&nbsp;
             <input type="button" value="Cancelar" onclick="closeAddForm()">
             <br /><br /><br /><br />
-            
+
 
         </form>
     </div>
@@ -46,12 +46,10 @@
             RFC: <label id="edit-RFC"></label>    <br />
             Fecha de Nacimiento: <label id="edit-FecNacimiento"></label> <br />
             Fecha de Alta<label id="edit-FecAlta"></label>   <br />
-
-
             Email: <input type="email" id="edit-Email" placeholder="Email"><br />
             Telefono: <input type="text" id="edit-Telefono" placeholder="Telèfono"><br />
             Puesto: <input type="text" id="edit-Puesto" placeholder="Puesto"><br />
-            Fecha de Baja: <input type="date" id="edit-FecBaja" placeholder="Fecha de Nacimiento"><br />
+            Fecha de Baja: <input type="text" id="edit-FecBaja" placeholder="Fecha Baja"><br />
             Estado Civil: <input type="text" id="edit-EstadoCivil" maxlength="1" placeholder="Esatado Civil (Soltero,Casado,Otro)"><br />
             Direcciòn: <input type="text" id="edit-Direccion" placeholder="Direcciòn"><br /><br />
 
@@ -61,8 +59,25 @@
         </form>
     </div>
 
+    <div id="searchForm">
+        <h3>Seleccionar Crìterios de Bùsqueda</h3>
+        <form action="javascript:void(0);" onsubmit="searchItem()">
+            <br />
+            Nombre: <input type="text" id="find-nombre" placeholder="Nombre"><br />
+            RFC: <input type="text" id="find-RFC" placeholder="RFC"><br />
+            Estatus: <select name="find-Estatus" id="find-Estatus">
+                <option value="A">Labora actualmente</option>
+                <option value="I">Empleado dado de baja</option>>
+            </select>
+            <br /><br /><br />
+            <input type="submit" value="Buscar">&nbsp;&nbsp;&nbsp;
+            <input type="button" value="Cancelar" onclick="closeSearchForm()">
+            <br /><br /><br /><br />
+        </form>
+    </div>
+
     <div id="dataSection">
-        <input type="button" value="Bùsqueda">&nbsp;&nbsp;&nbsp;
+        <input type="button" value="Bùsqueda" onclick="displaySearch()">&nbsp;&nbsp;&nbsp;
         <input type="button" value="Crear" onclick="displayAdded()">&nbsp;&nbsp;&nbsp;
         <input type="button" value="Actualizar" onclick="location.reload()">&nbsp;&nbsp;&nbsp;
 

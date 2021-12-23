@@ -49,6 +49,59 @@ function addItem() {
     const Puesto_Textbox = document.getElementById('add-Puesto');
     const FecAlta_Textbox = document.getElementById('add-FecAlta');
 
+    if (addNombreTextbox.value.trim() == "" ) {
+        alert("Nombre es obligatorio");
+        return;
+    }
+    if (ApPaterno_Textbox.value.trim() == "") {
+        alert("Apellido Paterno es obligatorio");
+        return;
+    }
+    if (ApMaterno_Textbox.value.trim() == "") {
+        alert("Apellido Materno es obligatorio");
+        return;
+    }
+    if (Edad_Textbox.value.trim() == "") {
+        alert("Edad es obligatorio");
+        return;
+    }
+    if (FecNacimiento_Textbox.value.trim() == "") {
+        alert("Fecha de Nacimiento es obligatorio");
+        return;
+    }
+
+    if (Genero_Textbox.value.trim() == "") {
+        alert("Genero es obligatorio");
+        return;
+    }
+    if (EstadoCivil_Textbox.value.trim() == "") {
+        alert("Estado Civil es obligatorio");
+        return;
+    }
+    if (RFC_Textbox.value.trim() == "") {
+        alert("RFC es obligatorio");
+        return;
+    }
+    if (Direccion_Textbox.value.trim() == "") {
+        alert("Direcciòn es obligatoria");
+        return;
+    }
+    if (Email_Textbox.value.trim() == "") {
+        alert("Email es obligatorio");
+        return;
+    }
+    if (Telefono_Textbox.value.trim() == "") {
+        alert("Telèfono es obligatori0");
+        return;
+    }
+    if (Puesto_Textbox.value.trim() == "") {
+        alert("Puesto es obligatorio");
+        return;
+    }
+    if (FecAlta_Textbox.value.trim() == "") {
+        alert("Fecha de Alta es obligatorio");
+        return;
+    }
     const item = {
         nombre: addNombreTextbox.value.trim(),
         apPaterno: ApPaterno_Textbox.value.trim(),
@@ -64,9 +117,6 @@ function addItem() {
         puesto: Puesto_Textbox.value.trim(),
         fecAlta: FecAlta_Textbox.value.trim()
     };
-
-    console.log(JSON.stringify(item));
-
     fetch(uri, {
         method: 'POST',
         headers: {
@@ -85,12 +135,15 @@ function addItem() {
     closeAddForm();
 }
 
-function deleteItem(id) {
-    fetch(`${uri}/${id}`, {
-        method: 'DELETE'
-    })
-        .then(() => listaEmpleados())
-        .catch(error => console.error('No se puede eliminar el empleado.', error));
+function deleteItem(id, nombre ) {
+
+    if (confirm("Realmente desea eliminar al empleado " + nombre + "?")) {
+        fetch(`${uri}/${id}`, {
+            method: 'DELETE'
+        })
+            .then(() => listaEmpleados())
+            .catch(error => console.error('No se puede eliminar el empleado.', error));
+    }
 }
 
 function displayEditForm(id) {
@@ -111,6 +164,7 @@ function displayEditForm(id) {
     document.getElementById('edit-FecBaja').value = item.fecBaja;
     document.getElementById('edit-EstadoCivil').value = item.estadoCivil;
     document.getElementById('edit-Direccion').value = item.direccion;
+    document.getElementById('edit-FecBaja').value = item.fecBaja;
 
     document.getElementById('editForm').style.display = 'block';
     document.getElementById('dataSection').style.display = 'none';
@@ -126,7 +180,26 @@ function updateItem() {
     const FecBaja_Textbox = document.getElementById('edit-FecBaja');
     const EstadoCivil_Textbox = document.getElementById('edit-EstadoCivil');
     const Direccion_Textbox = document.getElementById('edit-Direccion');
-
+    if (Email_Textbox.value.trim() == "") {
+        alert("Email es obligatorio");
+        return;
+    }
+    if (Telefono_Textbox.value.trim() == "") {
+        alert("Telèfono es obligatorio");
+        return;
+    }
+    if (Puesto_Textbox.value.trim() == "") {
+        alert("Puesto es obligatorio");
+        return;
+    }
+    if (EstadoCivil_Textbox.value.trim() == "") {
+        alert("Estado Civil es obligatorio");
+        return;
+    }
+    if (Direccion_Textbox.value.trim() == "") {
+        alert("Direcciòn Civil es obligatorio");
+        return;
+    }
     const item = {
         id: parseInt(itemId, 10),
         estadoCivil: EstadoCivil_Textbox.value.trim(),
@@ -163,6 +236,11 @@ function closeAddForm() {
     document.getElementById('dataSection').style.display = 'block';
 }
 
+function closeSearchForm() {
+    document.getElementById('searchForm').style.display = 'none';
+    document.getElementById('dataSection').style.display = 'block';
+}
+
 function _displayCount(itemCount) {
     const name = (itemCount === 1) ? 'Empleado' : 'Empleados';
 
@@ -184,7 +262,7 @@ function _displayItems(data) {
 
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'Eliminar';
-        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
+        deleteButton.setAttribute('onclick', `deleteItem(${item.id},'${item.nombre + " " + item.apPaterno + " " + item.apMaterno}')`);
 
         let tr = tBody.insertRow();
 
@@ -217,4 +295,43 @@ function _displayItems(data) {
     });
 
     todos = data;
+}
+
+function displaySearch() {             
+    document.getElementById("find-nombre").value = null;
+    document.getElementById("find-RFC").value = null;
+    document.getElementById("find-Estatus").value = null;
+    document.getElementById('searchForm').style.display = 'block';
+    document.getElementById('dataSection').style.display = 'none';
+}
+
+function searchItem() {
+    const findNombreTextbox = document.getElementById('find-nombre');
+    const findRFC_Textbox = document.getElementById('find-RFC');
+    const findEstatus_Textbox = document.getElementById('find-Estatus');
+
+    if (findNombreTextbox.value.trim() == "" && findRFC_Textbox.value.trim() == "" && findEstatus_Textbox.value.trim() == "") {
+        alert("Debe seleccionar un crìterio de bùsqueda");
+        return;
+    }
+
+    const item = {
+        nombre: findNombreTextbox.value.trim(),
+        rfc: findRFC_Textbox.value.trim(),
+        estatus: findEstatus_Textbox.value.trim()
+    };
+    console.log(JSON.stringify(item));
+    fetch(uri +"/Search", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item)
+    })
+        .then(response => response.json())
+        .then(data => _displayItems(data))
+        .catch(error => alert('No fue posible obtener empleados. error:'+error));
+
+        closeSearchForm();
 }

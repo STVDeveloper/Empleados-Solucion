@@ -10,6 +10,9 @@
     display: none;
 }
 
+#searchForm {
+    display: none;
+}
 table {
     font-family: Arial, sans-serif;
     border: 1px solid;
